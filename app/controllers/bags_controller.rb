@@ -11,9 +11,12 @@ class BagsController < ApplicationController
   end
 
   def create
-    @bag = Bag.new(params[:size])
+    p '*' * 80
+    p params
+    @bag = Bag.new(size: params[:bag][:size])
+    p @bag
     if @bag.save
-      redirect_to "/bags/#{@bag.id}/show"
+      redirect_to "/bags/#{@bag.id}"
     else
       render 'new'
     end
