@@ -3,5 +3,16 @@
   <%= link_to 'Add a bag', new_bag_path %>
 </p>
 <p>
-  eidt bag here later
+  Retrieve bag
 </p>
+
+<% if @bags %>
+<div>
+  <h2>All bags created</h2>
+  <ul>
+    <% @bags.each do |bag| %>
+    <li><%= bag %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
