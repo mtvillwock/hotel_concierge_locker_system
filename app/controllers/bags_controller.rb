@@ -17,14 +17,11 @@ class BagsController < ApplicationController
     @bag = Bag.new(size: params[:bag][:size])
     if @bag.save
       p @bag
-      @lockers = Locker.where(size: @bag.size, empty?: true)
-      p @lockers
-      @lockers.each do |locker|
-        @locker = locker
-        break @locker.current_bag.nil?
-      end
+      @locker = Locker.where(size: @bag.size, empty: true).first
       p @locker
       @locker.current_bag = @bag
+      @locker.empty = false
+      @locker.save
       p @locker
       @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
       p @ticket
@@ -39,6 +36,7 @@ class BagsController < ApplicationController
   end
 
   def update
+    # need to change @locker.current_bag to nil and set empty to true
   end
 
   def destroy
