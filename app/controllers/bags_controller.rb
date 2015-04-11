@@ -40,10 +40,10 @@ class BagsController < ApplicationController
     @bag = Bag.find(params[:id])
     @ticket = Ticket.find_by(bag_id: @bag.id)
     @locker = Locker.find_by(id: @ticket.locker_id)
-    p @bag, @ticket, @locker
     @locker.current_bag = nil
     @locker.empty = true
     @locker.save
+    @ticket.destroy
   end
 
   def destroy
