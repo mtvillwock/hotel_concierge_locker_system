@@ -1,0 +1,31 @@
+<h2>Retrieve a bag</h2>
+<div class="retrieve-bag-form">
+  <p>Please enter the id of the bag you had stored.</p>
+  <%= form_for @bag do |f| %>
+<!-- HOW TO FIND BAG BASED ON TICKET? WHAT DO YOU PUT IN TICKET FORM? -->
+  <% if @bag.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error-warning">
+      <%= pluralize(@bag.errors.count, "error") %> prohibited
+      this bag from being stored:
+    </h2>
+    <ul>
+      <% @bag.errors.full_messages.each do |msg| %>
+      <li class="error-message"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p class="bag-id">
+    <%= f.text_field :id, placeholder: 'bag id number' %>
+  </p>
+
+  <p class="ticket-submit">
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+</div>
+
+<p><%= link_to 'Back', bags_path %></p>

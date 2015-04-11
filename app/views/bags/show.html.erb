@@ -1,11 +1,8 @@
-<h1>Bag#show</h1>
-
 <div>
-  <h3>Ticket</h3>
-  <p>Bag number: <% @bag.id %> is being stored in locker <%= @locker.id %></p>
-  <p>Your ticket id is: <%= @ticket.id %></p>
+  <h3>Ticket #<%= @ticket.id %></h3>
+  <p>Bag number: <%= @bag.id %> is being stored in locker <%= @locker.id %></p>
 </div>
 
 <p><%= link_to 'Add another bag', new_bag_path %></p>
-<p><%= link_to 'Retrieve a bag', edit_bag_path %></p>
+<p><%= link_to 'Retrieve this bag', edit_bag_path %></p>
 <p><%= link_to 'Back to home', bags_path %></p>

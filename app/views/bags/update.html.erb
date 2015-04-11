@@ -1,2 +1,8 @@
-<h1>Bag#update</h1>
-<p>Find me in app/views/bag/update.html.erb</p>
+<h2>Bag and Locker Status</h2>
+<div>
+  <p>Bag number: #<%= @bag.id %> has been retrieved for you.</p>
+  <p>Locker <%= @locker.id %> has no current bag and is marked empty.</p>
+</div>
+
+<p><%= link_to 'Add another bag', new_bag_path %></p>
+<p><%= link_to 'Back to home', bags_path %></p>

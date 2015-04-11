@@ -1,6 +1,11 @@
 class BagsController < ApplicationController
   def index
-    @bags = Bag.all
+    @lockers_with_bags = Locker.where(empty: false)
+    @bags = []
+    @lockers_with_bags.each do |locker|
+      @bags << Bag.find(locker.ticket.bag_id)
+    end
+    @bags
   end
 
   def show
@@ -16,15 +21,11 @@ class BagsController < ApplicationController
   def create
     @bag = Bag.new(size: params[:bag][:size])
     if @bag.save
-      p @bag
       @locker = Locker.where(size: @bag.size, empty: true).first
-      p @locker
       @locker.current_bag = @bag
       @locker.empty = false
       @locker.save
-      p @locker
       @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
-      p @ticket
       redirect_to "/bags/#{@bag.id}"
     else
       render 'new'
@@ -36,7 +37,13 @@ class BagsController < ApplicationController
   end
 
   def update
-    # need to change @locker.current_bag to nil and set empty to true
+    @bag = Bag.find(params[:id])
+    @ticket = Ticket.find_by(bag_id: @bag.id)
+    @locker = Locker.find_by(id: @ticket.locker_id)
+    p @bag, @ticket, @locker
+    @locker.current_bag = nil
+    @locker.empty = true
+    @locker.save
   end
 
   def destroy
