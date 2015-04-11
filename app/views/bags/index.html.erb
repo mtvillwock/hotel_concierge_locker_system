@@ -11,7 +11,7 @@
   <h2>All bags created</h2>
   <ul>
     <% @bags.each do |bag| %>
-    <li><%= bag %></li>
+    <li><%= link_to 'Get bag', bag %> Bag #<%= bag.id %></li>
     <% end %>
   </ul>
 </div>
