@@ -1,8 +1,9 @@
 require 'rails_helper'
+require 'factory_girl_rails'
 
 RSpec.describe BagsController, :type => :controller do
 
-  let!(:bag) { create(:bag) }
+  let!(:bag) { build(:bag) }
   let!(:locker) { create(:locker) }
   let!(:ticket) { create(:ticket) }
 
