@@ -3,5 +3,6 @@ class Locker < ActiveRecord::Base
 
   has_one :ticket
 
-  validates_presence_of :size
+  validates :size, inclusion: { in: %w(small medium large),
+    message: "please use small, medium, or large as values" }
 end
