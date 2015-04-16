@@ -35,7 +35,7 @@ RSpec.describe BagsController, :type => :controller do
   end
 
   context '#create' do
-    xit '' do
+    it 'increments bag count when a bag is created' do
       expect {
         post :create, bag: { size: bag.size }
       }.to change{
