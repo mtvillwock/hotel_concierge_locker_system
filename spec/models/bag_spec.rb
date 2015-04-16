@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Bag do
 # RSpec.describe Bag, :type => :model do
   context 'valid Bag' do
-
     it 'is valid with a size "small"' do
       bag = Bag.new(size: "small")
       expect(bag).to be_valid
@@ -21,10 +20,11 @@ describe Bag do
   end
 
   context 'invalid Bag' do
-    it 'is invalid without a bag size' do
+    it 'is invalid without a size' do
       bag = Bag.new(size: nil)
-      expect(bag).to be_invalid
-      expect(bag.errors[:size]).to include("please use small, medium, or large as values")
+      expect(bag).to_not be_valid
+      # p bag.errors.messages[:size]
+      # expect(bag.errors.messages[:size]).to end_with("please use small, medium, or large as values")
     end
   end
 end
