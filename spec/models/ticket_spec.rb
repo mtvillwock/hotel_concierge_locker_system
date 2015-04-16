@@ -2,12 +2,29 @@ require 'spec_helper'
 
 describe Ticket do
   context 'valid Ticket'
-  xit 'is valid with a bag id and locker id' do
+  it 'is valid with a bag id and locker id' do
+    ticket = Ticket.new(locker_id: 1, bag_id: 1)
+    expect(ticket).to be_valid
   end
   context 'invalid Ticket' do
-    xit 'is invalid without a locker id' do
+    it 'is invalid with non-integer locker id' do
+      ticket = Ticket.new(locker_id: "not an integer", bag_id: 1)
+      expect(ticket).to be_invalid
     end
-    xit 'is invalid without a bag id' do
+
+    it 'is invalid with no locker id' do
+      ticket = Ticket.new(locker_id: nil, bag_id: 1)
+      expect(ticket).to be_invalid
+    end
+
+    it 'is invalid with non-integer bag id' do
+      ticket = Ticket.new(locker_id: 1, bag_id: "not an integer")
+      expect(ticket).to be_invalid
+    end
+
+    it 'is invalid with no bag id' do
+      ticket = Ticket.new(locker_id: 1, bag_id: nil)
+      expect(ticket).to be_invalid
     end
   end
 end
