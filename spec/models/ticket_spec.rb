@@ -1,5 +1,6 @@
 require 'spec_helper'
-describe 'Ticket' do
+
+describe Ticket do
   context 'valid Ticket'
   it 'is valid with a bag id and locker id' do
   end

@@ -1,5 +1,6 @@
 require 'spec_helper'
-describe 'Locker' do
+
+describe Locker do
   context 'valid Locker' do
     it 'is valid with a size "small"' do
       locker = Locker.new("small")
