@@ -3,78 +3,32 @@ require 'factory_girl_rails'
 
 RSpec.describe BagsController, :type => :controller do
 
-  let!(:bag) { FactoryGirl.create :bag }
-  let!(:locker) { FactoryGirl.create :locker }
-  let!(:ticket) { FactoryGirl.create :ticket }
-
-  # context '#index' do
-  #   xit '' do
-
-  #   end
-
-  #   xit '' do
-
-  #   end
-  # end
-
-  # context '#show' do
-  #   xit '' do
-
-  #   end
-  #   xit '' do
-
-  #   end
-  # end
-
-  # context '#new' do
-  #   xit '' do
-
-  #   end
-  #   xit '' do
-
-  #   end
-  # end
+  let!(:bag) { FactoryGirl.build :bag }
+  let!(:locker) { FactoryGirl.build :locker }
+  let!(:ticket) { FactoryGirl.build :ticket }
 
   context '#create' do
-    it 'creates a bag' do
+    it 'creates a bag, stores it in a locker, and creates a ticket' do
+      # Is there a proper way to extract this into multiple tests?
+      p bag
+      p locker
+      p ticket
       count = Bag.count
       post(:create, bag: { size: bag.size })
+      locker = Locker.new
       locker.current_bag = bag
       locker.empty = false
       locker.save
-      # ticket
+      ticket = Ticket.new(locker_id: locker.id, bag_id: bag.id)
+      p bag
+      p locker
+      p ticket
       expect(Bag.count).to be(count + 1)
     end
-    it 'redirects user to the /bags/:id #show route' do
-      p :bag
-      post(:create, bag)
-      expect(last_response.status).to eq(302)
-    end
-    # it 'increments bag count when a bag is created' do
-    #   expect{
-    #     post(:create, bag: { size: bag.size }, )locker: { size: locker.size }, ticket: { locker_id: locker.id, bag_id: bag.id }
-    #   }.to change(Bag, :count).by(1)
+    # it 'redirects user to the /bags/:id #show route' do
+      # response = post(:create, bag: { size: bag.size })
+      # p response
+      # expect(response).to redirect_to("/bags/#{bag.id}")
     # end
-
-
   end
-
-  # context '#edit' do
-  #   xit '' do
-
-  #   end
-  #   xit '' do
-
-  #   end
-
-  # end
-
-  # context '#update' do
-  #   xit '' do
-
-  #   end
-  #   xit '' do
-
-  #   end
-  # end
 end
