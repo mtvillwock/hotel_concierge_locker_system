@@ -1,6 +1,6 @@
 class Ticket < ActiveRecord::Base
-  has_one :bag
-  has_one :locker
+  belongs_to :bag
+  belongs_to :locker
 
   validates_presence_of :locker_id, :bag_id
   validates :locker_id, numericality: { only_integer: true }
