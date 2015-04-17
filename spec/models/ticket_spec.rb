@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Ticket do
+  context 'associations' do
+    it { should validate_presence_of :locker_id }
+    it { should validate_presence_of :bag_id }
+    it { should have_one(:locker) }
+    it { should have_one(:bag) }
+  end
+
   context 'valid Ticket'
   it 'is valid with a bag id and locker id' do
     ticket = Ticket.new(locker_id: 1, bag_id: 1)

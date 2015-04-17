@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Locker do
+  context 'associations' do
+    it { should validate_presence_of :size }
+    it { should have_one(:ticket) }
+  end
+
   context 'valid Locker' do
     it 'is valid with a size "small"' do
       locker = Locker.new(size: "small")
