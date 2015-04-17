@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Locker do
   context 'associations' do
-    it { should validate_presence_of :size }
     it { should have_one(:ticket) }
   end
 
