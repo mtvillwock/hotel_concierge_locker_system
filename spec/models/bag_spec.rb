@@ -21,7 +21,7 @@ describe Bag do
     it 'is invalid with an improper size' do
       bag = Bag.new(size: "not one of the possible sizes")
       bag.valid?
-      expect(bag.errors.messages[:size]).to include("please use small, medium, or large as values")
+      expect(bag.errors.messages[:size]).to include("Bags must use small, medium, or large as values")
     end
   end
 end

@@ -4,11 +4,17 @@ describe Ticket do
   context 'associations' do
     it { should validate_presence_of :locker_id }
     it { should validate_presence_of :bag_id }
+    it { should belong_to(:locker) }
+    it { should belong_to(:bag) }
   end
 
   context 'valid Ticket' do
     it 'is valid with a bag id and locker id' do
-      expect(build(:valid_ticket)).to be_valid
+      bag = create(:small_bag)
+      locker = create(:small_locker)
+      ticket = build(:ticket, locker_id: locker.id, bag_id: bag.id)
+
+      expect(ticket).to be_valid
     end
   end
 

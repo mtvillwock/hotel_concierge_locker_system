@@ -27,7 +27,7 @@ describe Locker do
     it 'is invalid with an improper size' do
       locker = Locker.new(size: "not one of the possible sizes")
       locker.valid?
-      expect(locker.errors.messages[:size]).to include("please use small, medium, or large as values")
+      expect(locker.errors.messages[:size]).to include("Lockers must use small, medium, or large as values")
     end
   end
 end
