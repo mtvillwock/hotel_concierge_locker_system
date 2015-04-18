@@ -12,6 +12,8 @@ RSpec.describe BagsController, :type => :controller do
       get :index
       expect(response.status).to eq(200)
     end
+
+    it 'displays all bags currently in lockers'
   end
 
 

@@ -1,11 +1,11 @@
 class BagsController < ApplicationController
   def index
     @lockers_with_bags = Locker.where(empty: false)
-    @bags = []
+    @bags_in_lockers = []
     @lockers_with_bags.each do |locker|
       @bags << Bag.find(locker.ticket.bag_id)
     end
-    @bags
+    @bags_in_lockers
   end
 
   def show
