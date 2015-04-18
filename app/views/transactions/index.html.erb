@@ -1,13 +1,5 @@
 <h1>Front Desk</h1>
 
 <p>
-  <%= link_to 'Add a bag', new_bag_path %> ...</p>
-  <p> or choose a bag below that you want to retrieve.</p>
-
-<% if @bags_in_lockers %>
-<div>
-    <% @bags_in_lockers.each do |bag| %>
-    <p><%= link_to "See bag #{bag.id}", bag %></p>
-    <% end %>
-</div>
-<% end %>
+  <%= link_to 'Add a bag', new_bag_path %></p>
+  <p> <%= link_to 'Retrieve a bag',tickets_path %></p>
