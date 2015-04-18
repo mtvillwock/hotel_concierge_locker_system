@@ -9,7 +9,9 @@ RSpec.describe Transaction, type: :model do
     end
 
     context 'valid Transaction' do
-      expect(build(:valid_transaction)).to be_valid
+      it 'is valid with a bag id, locker id, and ticket id' do
+        expect(build(:valid_transaction)).to be_valid
+      end
     end
 
     context 'invalid Transaction' do
