@@ -1,0 +1,2 @@
+class LockersController < ApplicationController
+end
