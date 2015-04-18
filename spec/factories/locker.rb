@@ -18,4 +18,8 @@ FactoryGirl.define do
     # ticket = build(:ticket, locker_id: locker.id, bag_id: bag.id)
     # locker.current_bag = bag
   end
+
+  factory :invalid_locker do
+    size nil
+  end
 end

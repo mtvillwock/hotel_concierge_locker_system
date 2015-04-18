@@ -12,5 +12,9 @@ FactoryGirl.define do
     factory :large_bag do
       size "large"
     end
+
+    factory :invalid_bag do
+      size nil
+    end
   end
 end
