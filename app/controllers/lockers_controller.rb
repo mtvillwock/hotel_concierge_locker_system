@@ -16,7 +16,7 @@ class LockersController < ApplicationController
     if @locker.save
       render json: { success: "locker ##{locker.id} size #{locker.size} created"}
     else
-      render json: { error: "locker requires locker and bag"}
+      render json: { error: "locker requires size"}
     end
   end
 

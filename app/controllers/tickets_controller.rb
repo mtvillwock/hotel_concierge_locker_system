@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
     if @ticket.save
       render json: { success: "ticket ##{ticket.id} created"}
     else
-      render json: { error: "ticket requires locker and bag"}
+      render json: { error: "ticket requires locker_id and bag_id"}
     end
   end
 

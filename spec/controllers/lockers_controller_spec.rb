@@ -51,17 +51,17 @@ RSpec.describe LockersController, type: :controller do
     end
   end
 
-  describe 'PATCH #update'
-    context "with valid attributes"
+  describe 'PATCH #update' do
+    context "with valid attributes" do
       it "updates the Locker status" # this shouldn't be a route
       it "redirects to the Locker"
     end
-    context "with invalid attributes"
+    context "with invalid attributes" do
       it "does not update the Locker"
       it "re-renders the :edit template"
     end
   end
-  describe "DELETE #destroy"
+  describe "DELETE #destroy" do
     it "deletes the Locker from the database"
     it "redirects to lockers#index"
   end

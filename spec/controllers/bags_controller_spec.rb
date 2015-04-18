@@ -17,7 +17,12 @@ RSpec.describe BagsController, :type => :controller do
   end
 
   describe 'GET #show' do
-    it 'assigns the requested Bag to @bag'
+    it 'assigns the requested Bag to @bag' do
+      size = %w(small medium large).sample
+      bag = create(:bag, {size: size} )
+      get :show, id: bag
+      expect(assigns(:bag)).to eq bag
+    end
     it 'renders the :show template'
   end
 
@@ -55,16 +60,18 @@ RSpec.describe BagsController, :type => :controller do
     end
   end
 
-  describe 'PATCH #update'
-    context "with valid attributes"
+  describe 'PATCH #update' do
+    context "with valid attributes" do
       it "updates the Bag status" # this shouldn't be a route
       it "redirects to the Bag"
-    context "with invalid attributes"
+    end
+    context "with invalid attributes" do
       it "does not update the Bag"
       it "re-renders the :edit template"
     end
+  end
 
-  describe "DELETE #destroy"
+  describe "DELETE #destroy" do
     it "deletes the Bag from the database"
     it "redirects to bags#index"
   end
