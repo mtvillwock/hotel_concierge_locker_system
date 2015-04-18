@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
   def create
       @ticket = Ticket.new(locker_id: @locker.id, bag_id: @bag.id)
     if @ticket.save
-      render json: { success: "ticket ##{ticket.id} created"}
+      render json: { success: "ticket ##{@ticket.id} created"}
     else
       render json: { error: "ticket requires locker_id and bag_id"}
     end

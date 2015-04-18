@@ -14,7 +14,7 @@ class BagsController < ApplicationController
   def create
     @bag = Bag.new(size: params[:bag][:size])
     if @bag.save
-      render json: { success: "bag ##{bag.id} created"}
+      render json: { success: "bag ##{@bag.id} created"}
     else
       render json: { error: "bag requires size"}
     end
@@ -26,8 +26,8 @@ class BagsController < ApplicationController
 
   def update
     @bag = Bag.find(params[:id])
-    if @ticket.save
-      render json: { success: "bag ##{bag.id} updated"}
+    if @bag.save
+      render json: { success: "bag ##{@bag.id} updated"}
     else
       render json: { error: "bag failed to update"}
     end

@@ -14,7 +14,7 @@ class LockersController < ApplicationController
   def create
     @locker = Locker.new(size: params[:size])
     if @locker.save
-      render json: { success: "locker ##{locker.id} size #{locker.size} created"}
+      render json: { success: "locker ##{@locker.id} size #{@locker.size} created"}
     else
       render json: { error: "locker requires size"}
     end
