@@ -3,11 +3,11 @@ require 'factory_girl_rails'
 
 RSpec.describe BagsController, :type => :controller do
 
-  let!(:bag) { FactoryGirl.build :bag }
-  let!(:locker) { FactoryGirl.build :locker }
-  let!(:ticket) { FactoryGirl.build :ticket }
+  # let!(:bag) { FactoryGirl.build :bag }
+  # let!(:locker) { FactoryGirl.build :locker }
+  # let!(:ticket) { FactoryGirl.build :ticket }
 
-  describe "GET index" do
+  context "GET index" do
     it "has a 200 status code" do
       get :index
       expect(response.status).to eq(200)
@@ -33,11 +33,11 @@ RSpec.describe BagsController, :type => :controller do
   # end
 
   context '#create' do
-    it 'has a 302 status code' do
-      post :create, bag: { size: %w(small medium large) }
-      p response
-      follow_redirect!
-      expect(last_response).to redirect_to(assigns(:bag))
+    it "redirects to a bag's page upon save" do
+      size = %w(small medium large).sample
+      # should this be broken out to cover each size explicitly?
+      post :create, bag: { size: size }
+      expect(response).to redirect_to(assigns(:bag))
       # expect(response.status).to eq(302)
       # this is returning 200
     end
