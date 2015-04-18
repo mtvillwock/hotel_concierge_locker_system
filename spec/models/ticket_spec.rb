@@ -13,7 +13,6 @@ describe Ticket do
       bag = create(:small_bag)
       locker = create(:small_locker)
       ticket = build(:ticket, locker_id: locker.id, bag_id: bag.id)
-
       expect(ticket).to be_valid
     end
   end
