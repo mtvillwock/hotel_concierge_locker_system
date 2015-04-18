@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  describeTransaction do
+  describe Transaction do
     context 'associations' do
       it { should have_one(:bag) }
       it { should have_one(:locker) }
@@ -24,3 +24,4 @@ RSpec.describe Transaction, type: :model do
       end
     end
   end
+end
