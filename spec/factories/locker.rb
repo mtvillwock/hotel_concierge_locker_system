@@ -3,3 +3,4 @@ FactoryGirl.define do
     size %w(small medium large).sample
     # ticket # This causes a stack too deep error
   end
+end
