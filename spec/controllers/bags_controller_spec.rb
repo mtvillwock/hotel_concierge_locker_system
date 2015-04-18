@@ -65,4 +65,17 @@ RSpec.describe BagsController, :type => :controller do
       it 're-renders the :new template'
     end
   end
+
+  describe 'PATCH #update'
+    context "with valid attributes"
+      it "updates the bag status" # this shouldn't be a route
+      it "redirects to the bag"
+    context "with invalid attributes"
+      it "does not update the contact"
+      it "re-renders the :edit template"
+    end
+  describe "DELETE #destroy"
+    it "deletes the bag from the database"
+    it "redirects to bags#index"
+  end
 end
