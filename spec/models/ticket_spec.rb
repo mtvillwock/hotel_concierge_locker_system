@@ -18,7 +18,7 @@ describe Ticket do
     end
 
     it 'is invalid with no bag id' do
-      expect(build(:ticket_without_bag_id)).to be_invalid
+      expect(build(:ticket_without_bag)).to be_invalid
     end
   end
 end
