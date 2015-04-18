@@ -2,9 +2,14 @@ require 'spec_helper'
 
 describe Bag do
   context 'valid Bag' do
-    it 'is valid with a valid size "small", "medium", or "large" provided' do
-      # bag = Bag.new(size: "small")
-      expect(build(:bag)).to be_valid
+    it 'is valid with a size "small"' do
+      expect(build(:small_bag)).to be_valid
+    end
+    it 'is valid with a size "medium"' do
+      expect(build(:medium_bag)).to be_valid
+    end
+    it 'is valid with a size "large"' do
+      expect(build(:large_bag)).to be_valid
     end
   end
 
