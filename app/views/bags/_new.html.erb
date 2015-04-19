@@ -1,0 +1,29 @@
+<div class="store-bag-form">
+  <h2>Store a bag</h2>
+  <p>Please enter the size of the bag as 'small', 'medium', or 'large'.</p>
+  <%= form_for @bag do |f| %>
+
+  <% if @bag.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error-warning">
+      <%= pluralize(@bag.errors.count, "error") %> prohibited
+      this bag from being stored:
+    </h2>
+    <ul>
+      <% @bag.errors.full_messages.each do |msg| %>
+      <li class="error-message"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p class="bag-size">
+    <%= f.text_field :size, placeholder: 'bag size' %>
+  </p>
+
+  <p class="bag-submit">
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+</div>
