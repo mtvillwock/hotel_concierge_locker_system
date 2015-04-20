@@ -1,8 +1,8 @@
 class TransactionsController < ApplicationController
   def index
     #@transactions = Transaction.all
-    @bag = Bag.new
-    @ticket = Ticket.new
+    # @bag = Bag.new
+    # @ticket = Ticket.new
   end
 
   def show
