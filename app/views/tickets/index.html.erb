@@ -1,0 +1,8 @@
+<h1>Front Desk</h1>
+
+<p>
+  <%= link_to 'Add a bag', :class => 'new-bag', new_bag_path %></p>
+<!-- this should be create ticket -->
+  <%= render 'bags/new' %>
+  <!-- this should be update or destroy ticket -->
+  <p> <%= link_to 'Retrieve a bag', :class => 'retrieve-bag', tickets_path %></p>

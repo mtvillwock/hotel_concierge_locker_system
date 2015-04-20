@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all
+    @ticket = Ticket.new
   end
 
   def show
@@ -12,11 +13,18 @@ class TicketsController < ApplicationController
   end
 
   def create
-      @ticket = Ticket.new(locker_id: @locker.id, bag_id: @bag.id)
-    if @ticket.save
-      render json: { success: "ticket ##{@ticket.id} created"}
+    # this initiates a bag, finds a locker, returns a ticket
+    @bag = Bag.new(size: params[:bag][:size])
+    if @bag.save
+      @locker = Locker.where(size: @bag.size, empty: true).first
+      @locker.current_bag = @bag
+      @locker.empty = false
+      @locker.save
+      @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
+      # render json: { success: "Ticket ##{@ticket.id} created, Bag #{@bag.id} stored in Locker #{@locker.id}"}
+      redirect_to "/tickets/#{@ticket.id}"
     else
-      render json: { error: "ticket requires locker_id and bag_id"}
+      render 'new'
     end
   end
 
@@ -34,7 +42,17 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    @ticket = Ticket.find_by(id: params[:id])
-    @ticket.destroy
+    @bag = Bag.find(params[:id])
+    @ticket = Ticket.find_by(bag_id: @bag.id)
+    @locker = Locker.find_by(id: @ticket.locker_id)
+    @locker.current_bag = nil
+    @locker.empty = true
+    @locker.save
+
+    if @ticket.destroy
+      redirect_to 'index'
+    else
+      render json: { error: "ticket still survive"}
+    end
   end
 end
