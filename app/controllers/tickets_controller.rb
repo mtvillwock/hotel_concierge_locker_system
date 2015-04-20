@@ -33,26 +33,19 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket = Ticket.find(params[:id])
-    if @ticket.save
-      render json: { success: "ticket ##{ticket.id} updated"}
-    else
-      render json: { error: "ticket failed to update"}
-    end
-  end
-
-  def destroy
     @bag = Bag.find(params[:id])
     @ticket = Ticket.find_by(bag_id: @bag.id)
     @locker = Locker.find_by(id: @ticket.locker_id)
     @locker.current_bag = nil
     @locker.empty = true
     @locker.save
-
     if @ticket.destroy
       redirect_to 'index'
     else
       render json: { error: "ticket still survive"}
     end
+  end
+
+  def destroy
   end
 end
