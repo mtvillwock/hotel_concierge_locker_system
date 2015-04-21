@@ -1,8 +1,20 @@
-<h1>Front Desk</h1>
-
-<p>
-  <%= link_to 'Add a bag', :class => 'new-bag', new_bag_path %></p>
-<!-- this should be create ticket -->
-  <%= render 'bags/new' %>
+<div class="container">
+  <h1>Hotel Concierge Locker System</h1>
+  <!-- this should be create ticket -->
+  <div class="four columns">
+    <%= render 'bags/new' %>
+  </div>
+  <div class="four columns">
+    <%= render 'edit' %>
+  </div>
+  <!-- <div class="hr"></div> -->
+  <div class="three columns ticket-list">
+    <% if @tickets %>
+    Current tickets: <br>
+    <% @tickets.each do |ticket|  %>
+    <p>Bag <%= ticket.bag.id %> is in Locker <%= ticket.locker.id %>.</p>
+    <% end %>
+    <% end %>
+  </div>
   <!-- this should be update or destroy ticket -->
-  <p> <%= link_to 'Retrieve a bag', :class => 'retrieve-bag', edit_tickets_path %></p>
+</div>

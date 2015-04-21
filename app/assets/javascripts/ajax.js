@@ -1,21 +1,21 @@
-$(document).ready(function() {
-  addNewBagFormListener();
-  addRetrieveBagFormListener();
-})
 
 function addNewBagFormListener() {
-  $('.new-bag').on('submit', addNewBag);
+  $('.new_bag').on('submit', addNewBag);
 }
+
+function addRetrieveBagFormListener() {
+  $('.new_ticket').on('submit', retrieveBag);
+}
+
 
 function addNewBag() {
-  // Should this function use callback promises instead
-  // of just being a wrapper for 3 different AJAX calls?
-  createBag();
-  // addBagToLocker();
-  // createTicket();
-}
+  event.preventDefault();
+  console.log("clicked new bag form");
+  var $form = $(this)
+  var data = $(this).serialize()
+  var url = $form.attr('action')
+  debugger
 
-function createBag() {
   var request = $.ajax({
     url: url,
     type: 'post',
@@ -24,24 +24,36 @@ function createBag() {
   })
 
   request.done(function(response) {
-    console.log("response");
+    console.log("response to add bag");
+    console.log(response);
     // extract this to non-anonymous function
   })
-  // .then(bagCreated, bagFailedToCreate)
-  // leaving the then here as reminder to consider callback
-  // .then(function(value) {}, function(reason) {});
 }
 
-// function addBagToLocker() {
-//   var request = $.ajax({
-//     url: url,
-//     type: 'post',
-//     data: data,
-//     // dataType:
-//   })
+function retrieveBag() {
+  event.preventDefault();
+  console.log("clicked retrieve ticket form");
+  var $form = $(this)
+  var data = $(this).serialize()
+  var url = $form.attr('action')
+  debugger
 
-//   request.done(function(response) {
-//     console.log("response");
-//     // extract this to non-anonymous function
-//   })
-// }
+  var request = $.ajax({
+    url: url,
+    type: 'put',
+    data: data,
+    // dataType:
+  })
+
+  request.done(function(response) {
+    console.log("response to retrieve bag");
+    console.log(response);
+    // extract this to non-anonymous function
+  })
+}
+
+
+$(document).ready(function() {
+  addNewBagFormListener();
+  addRetrieveBagFormListener();
+})

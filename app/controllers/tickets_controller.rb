@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all
     @ticket = Ticket.new
+    @bag = Bag.new
   end
 
   def show
