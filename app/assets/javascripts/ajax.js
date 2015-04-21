@@ -11,16 +11,14 @@ function addRetrieveBagFormListener() {
 function addNewBag() {
   event.preventDefault();
   console.log("clicked new bag form");
-  var $form = $(this)
-  var data = $(this).serialize()
-  var url = '/tickets'
-  // debugger
+  var $form = $(this);
+  var data = $form.serialize();
+  var url = '/tickets';
 
   var request = $.ajax({
     url: url,
     type: 'post',
-    data: data,
-    // dataType:
+    data: data
   })
 
   request.done(function(response) {
@@ -31,8 +29,8 @@ function addNewBag() {
 
 function buildTicket(response) {
   var newTicket = "<div class='ticket' id=" + response.ticket_id + "><p><span class='ticket-title'>Ticket #" + response.ticket_id + "</span><br>" + "Bag #" + response.bag_id + " is in Locker " + response.locker_id + "<button class='redeem-ticket'>Redeem Ticket</button></p></div>"
-    console.log(newTicket);
-    return newTicket;
+  console.log(newTicket);
+  return newTicket;
 }
 
 function addTicketToDOM(ticket) {
@@ -48,20 +46,25 @@ function retrieveBag() {
   var request = $.ajax({
     url: url,
     type: 'put',
-    data: {ticket_id: ticketId},
-    // dataType:
+    data: {ticket_id: ticketId}
   })
 
   request.done(function(response) {
-    var ticketId = response.ticket_id
-    var ticket = document.getElementById(ticketId)
+    var ticket = findTicketToRemove(response);
+    removeTicket(ticket);
     // remove ticket div from DOM
-    console.log(ticket);
-    ticket.remove();
-    // extract this to non-anonymous function
   })
 }
 
+function findTicketToRemove(data) {
+  var ticketId = data.ticket_id;
+  var ticket = document.getElementById(ticketId);
+  return ticket;
+}
+
+function removeTicket(ticket) {
+  ticket.remove();
+}
 
 $(document).ready(function() {
   addNewBagFormListener();
