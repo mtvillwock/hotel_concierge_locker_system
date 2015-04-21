@@ -16,12 +16,14 @@ See it deployed [here](https://hotel-locker-system.herokuapp.com/).
 - Ruby on Rails 4
 - AJAX
 - Skeleton CSS
+- RSPEC (check out the model and controller tests!)
 
 ## Post-Revision Thoughts
 I learned a lot from this challenge. Important things I learned included:
 - it is okay to include secondary objects in routes for a different, primary object
 - designing a good user flow takes a lot of thought
-- how to write thorough model and controller test in RSPEC
+- how to write thorough model and controller tests in RSPEC
+- different kinds of validations
 
 ## Original Thoughts
 The scope and scale of this challenge was loosely defined. I chose to build the program as a Rails app because I felt that it would work well and be more useful to the end user.
