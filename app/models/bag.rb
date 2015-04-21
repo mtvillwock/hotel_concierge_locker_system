@@ -1,4 +1,6 @@
 class Bag < ActiveRecord::Base
+  # belongs_to :transaction
 
-  validates_presence_of :size
+  validates :size, inclusion: { in: %w(small medium large),
+    message: "Bags must use small, medium, or large as values" }
 end

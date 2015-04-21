@@ -1,7 +1,9 @@
 class Locker < ActiveRecord::Base
   attr_accessor :current_bag
 
+  # belongs_to :transaction
   has_one :ticket
 
-  validates_presence_of :size
+  validates :size, inclusion: { in: %w(small medium large),
+    message: "Lockers must use small, medium, or large as values" }
 end

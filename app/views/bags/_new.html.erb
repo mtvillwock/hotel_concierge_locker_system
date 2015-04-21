@@ -1,5 +1,5 @@
 <div class="store-bag-form">
-  <h2>Store a bag</h2>
+  <h3>Store a bag</h3>
   <p>Please enter the size of the bag as 'small', 'medium', or 'large'.</p>
   <%= form_for @bag do |f| %>
 
@@ -22,10 +22,8 @@
   </p>
 
   <p class="bag-submit">
-    <%= f.submit %>
+    <%= f.submit "Store Your Bag" %>
   </p>
 
   <% end %>
 </div>
-
-<p><%= link_to 'Back', bags_path %></p>

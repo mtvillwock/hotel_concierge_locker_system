@@ -1,11 +1,8 @@
-<p>
-  <%= link_to 'Add a bag', new_bag_path %> ...</p>
-  <p> or choose a bag below that you want to retrieve.</p>
-
+<h2>All Bags</h2>
 <% if @bags %>
-<div>
-    <% @bags.each do |bag| %>
-    <p><%= link_to "See bag #{bag.id}", bag %></p>
-    <% end %>
-</div>
+<% @bags.each do  |bag| %>
+<p>
+  <%= bag.inspect %>
+</p>
+<% end %>
 <% end %>
