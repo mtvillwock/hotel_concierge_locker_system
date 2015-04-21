@@ -43,7 +43,7 @@ function retrieveBag() {
 
   var request = $.ajax({
     url: url,
-    type: 'put',
+    type: 'delete',
     data: {ticket_id: ticketId}
   })
 

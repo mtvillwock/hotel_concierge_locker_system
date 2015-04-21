@@ -33,6 +33,9 @@ class TicketsController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
     @ticket = Ticket.find(params[:id])
     @bag = Bag.find(@ticket.bag_id)
     @locker = Locker.find_by(id: @ticket.locker_id)
@@ -43,10 +46,7 @@ class TicketsController < ApplicationController
     if @ticket.destroy
       render json: { ticket_id: ticket_id }
     else
-      render 'edit'
+      render json: { error: "ticket not destroyed"}
     end
-  end
-
-  def destroy
   end
 end
