@@ -24,9 +24,10 @@ class TicketsController < ApplicationController
       @locker.empty = false
       @locker.save
       @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
-      # render json: { success: "Ticket ##{@ticket.id} created, Bag #{@bag.id} stored in Locker #{@locker.id}"}
+      # render id to append div
+      render json: { ticket_id: @ticket.id, bag_id: @bag.id, locker_id: @locker.id }
       # redirect_to "/tickets/#{@ticket.id}"
-      redirect_to 'index'
+      # redirect_to 'index'
     else
       render 'new'
     end
@@ -39,14 +40,17 @@ class TicketsController < ApplicationController
   def update
     p "update"
     p params
-    @ticket = Ticket.find_by(params[:id])
+    @ticket = Ticket.find(params[:id])
     @bag = Bag.find(@ticket.bag_id)
     @locker = Locker.find_by(id: @ticket.locker_id)
     @locker.current_bag = nil
     @locker.empty = true
     @locker.save
+    ticket_id = @ticket.id
     if @ticket.destroy
-      redirect_to 'index'
+      # render id to remove div
+      render json: { ticket_id: ticket_id }
+      # redirect_to 'index'
     else
       render 'edit'
     end

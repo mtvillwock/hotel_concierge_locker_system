@@ -4,7 +4,7 @@ function addNewBagFormListener() {
 }
 
 function addRetrieveBagFormListener() {
-  $('.new_ticket').on('submit', retrieveBag);
+  $('.ticket-list').on('click', '.redeem-ticket', retrieveBag);
 }
 
 
@@ -14,7 +14,7 @@ function addNewBag() {
   var $form = $(this)
   var data = $(this).serialize()
   var url = '/tickets'
-  debugger
+  // debugger
 
   var request = $.ajax({
     url: url,
@@ -24,30 +24,40 @@ function addNewBag() {
   })
 
   request.done(function(response) {
-    console.log("response to add bag");
-    console.log(response);
-    // extract this to non-anonymous function
+    var newTicket = buildTicket(response);
+    addTicketToDOM(newTicket);
   })
+}
+
+function buildTicket(response) {
+  var newTicket = "<div class='ticket' id=" + response.ticket_id + "><p><span class='ticket-title'>Ticket #" + response.ticket_id + "</span><br>" + "Bag #" + response.bag_id + " is in Locker " + response.locker_id + "<button class='redeem-ticket'>Redeem Ticket</button></p></div>"
+    console.log(newTicket);
+    return newTicket;
+}
+
+function addTicketToDOM(ticket) {
+  $('.ticket-list').append(ticket);
 }
 
 function retrieveBag() {
   event.preventDefault();
-  console.log("clicked retrieve ticket form");
-  var $form = $(this)
-  var ticketId = $(this)
-  debugger
-  var url = 'http://localhost:3000/tickets' + ticketId
+  console.log("clicked redeem ticket button");
+  var ticketId = $(this).closest('div').attr('id')
+  var url = 'http://localhost:3000/tickets/' + ticketId
 
   var request = $.ajax({
     url: url,
     type: 'put',
-    data: data,
+    data: {ticket_id: ticketId},
     // dataType:
   })
 
   request.done(function(response) {
-    console.log("response to retrieve bag");
-    console.log(response);
+    var ticketId = response.ticket_id
+    var ticket = document.getElementById(ticketId)
+    // remove ticket div from DOM
+    console.log(ticket);
+    ticket.remove();
     // extract this to non-anonymous function
   })
 }

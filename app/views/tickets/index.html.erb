@@ -12,9 +12,12 @@
     <% if @tickets %>
     <h3>Current tickets:</h3>
     <% @tickets.each do |ticket|  %>
+    <div class="ticket" id="<%= ticket.id %>">
     <p><span class="ticket-title">Ticket #<%= ticket.id %></span><br>
       Bag <%= ticket.bag.id %> is in Locker <%= ticket.locker.id %>.
+      <button class="redeem-ticket">Redeem Ticket</button>
     </p>
+    </div>
 
     <% end %>
     <% end %>
