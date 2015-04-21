@@ -38,8 +38,8 @@ function addTicketToDOM(ticket) {
 function retrieveBag() {
   event.preventDefault();
 
-  var ticketId = $(this).closest('div').attr('id')
-  var url = 'http://localhost:3000/tickets/' + ticketId
+  var ticketId = $(this).closest('div').attr('id');
+  var url = '/tickets/' + ticketId;
 
   var request = $.ajax({
     url: url,
