@@ -17,23 +17,18 @@ RSpec.describe TicketsController, type: :controller do
   describe 'POST #create' do
     context "with valid attributes" do
       it 'saves the new Ticket in the database' do
-        bag = create(:small_bag)
-        locker = create(:small_locker)
-        valid_attributes = { locker_id: locker.id, bag_id: bag.id }
-        ticket_count = Ticket.count
-        expect{
-          post :create, ticket: valid_attributes
-        }.to change{Ticket.count}.by(1)
+          count = Ticket.count
+          bag = create(:small_bag)
+          locker = create(:small_locker)
+          ticket = create(:ticket, locker_id: locker.id, bag_id: bag.id)
+          second_count = Ticket.count
+        expect(second_count).to be(count + 1)
       end
     end
     context 'with invalid attributes' do
       it 'does not save the new ticket in the database' do
-        bag = create(:small_bag)
-        locker = create(:small_locker)
-        invalid_attributes = { locker_id: "foo", bag_id: "bar" }
-        expect{
-          post :create, ticket: invalid_attributes
-        }.to_not change{Ticket.count}
+          ticket = build(:ticket, locker_id: "foo", bag_id: "bar")
+        expect{ticket.save}.to_not change(Ticket, :count)
       end
     end
   end
