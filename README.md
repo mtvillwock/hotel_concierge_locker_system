@@ -2,6 +2,8 @@
 
 A simple single page app for storing bags in lockers and giving tickets to be redeemed for a stored bag.
 
+See it deployed [here](https://hotel-locker-system.herokuapp.com/).
+
 ## How to use:
 - copy the git clone URL and use `git clone <paste the url>` to clone the repo to your desktop 
 - open Terminal and use `cd ~/Desktop/hotel_concierge_locker_system` to navigate to the app root directory
