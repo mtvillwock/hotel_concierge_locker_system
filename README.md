@@ -1,6 +1,6 @@
 # Hotel Locker System
 
-A simple single page app for storing bags in lockers and giving tickets to be redeemed for a stored bag.
+A single page app for storing bags in lockers and giving tickets to be redeemed for a stored bag.
 
 See it deployed [here](https://hotel-locker-system.herokuapp.com/).
 
