@@ -10,7 +10,6 @@ function addRetrieveBagFormListener() {
 
 function addNewBag() {
   event.preventDefault();
-  console.log("clicked new bag form");
   var $form = $(this);
   var data = $form.serialize();
   var url = '/tickets';
@@ -29,7 +28,6 @@ function addNewBag() {
 
 function buildTicket(response) {
   var newTicket = "<div class='ticket' id=" + response.ticket_id + "><p><span class='ticket-title'>Ticket #" + response.ticket_id + "</span><br>" + "Bag #" + response.bag_id + " is in Locker " + response.locker_id + "<button class='redeem-ticket'>Redeem Ticket</button></p></div>"
-  console.log(newTicket);
   return newTicket;
 }
 
@@ -39,7 +37,7 @@ function addTicketToDOM(ticket) {
 
 function retrieveBag() {
   event.preventDefault();
-  console.log("clicked redeem ticket button");
+
   var ticketId = $(this).closest('div').attr('id')
   var url = 'http://localhost:3000/tickets/' + ticketId
 
