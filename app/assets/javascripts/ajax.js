@@ -13,7 +13,7 @@ function addNewBag() {
   console.log("clicked new bag form");
   var $form = $(this)
   var data = $(this).serialize()
-  var url = $form.attr('action')
+  var url = '/tickets'
   debugger
 
   var request = $.ajax({
@@ -34,9 +34,9 @@ function retrieveBag() {
   event.preventDefault();
   console.log("clicked retrieve ticket form");
   var $form = $(this)
-  var data = $(this).serialize()
-  var url = $form.attr('action')
+  var ticketId = $(this)
   debugger
+  var url = 'http://localhost:3000/tickets' + ticketId
 
   var request = $.ajax({
     url: url,

@@ -10,9 +10,12 @@
   <!-- <div class="hr"></div> -->
   <div class="three columns ticket-list">
     <% if @tickets %>
-    Current tickets: <br>
+    <h3>Current tickets:</h3>
     <% @tickets.each do |ticket|  %>
-    <p>Bag <%= ticket.bag.id %> is in Locker <%= ticket.locker.id %>.</p>
+    <p><span class="ticket-title">Ticket #<%= ticket.id %></span><br>
+      Bag <%= ticket.bag.id %> is in Locker <%= ticket.locker.id %>.
+    </p>
+
     <% end %>
     <% end %>
   </div>

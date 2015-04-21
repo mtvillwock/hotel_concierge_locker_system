@@ -15,6 +15,8 @@ class TicketsController < ApplicationController
 
   def create
     # this initiates a bag, finds a locker, returns a ticket
+    p "create route"
+    p params
     @bag = Bag.new(size: params[:bag][:size])
     if @bag.save
       @locker = Locker.where(size: @bag.size, empty: true).first
@@ -23,7 +25,8 @@ class TicketsController < ApplicationController
       @locker.save
       @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
       # render json: { success: "Ticket ##{@ticket.id} created, Bag #{@bag.id} stored in Locker #{@locker.id}"}
-      redirect_to "/tickets/#{@ticket.id}"
+      # redirect_to "/tickets/#{@ticket.id}"
+      redirect_to 'index'
     else
       render 'new'
     end
@@ -34,8 +37,10 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @bag = Bag.find(params[:id])
-    @ticket = Ticket.find_by(bag_id: @bag.id)
+    p "update"
+    p params
+    @ticket = Ticket.find_by(params[:id])
+    @bag = Bag.find(@ticket.bag_id)
     @locker = Locker.find_by(id: @ticket.locker_id)
     @locker.current_bag = nil
     @locker.empty = true
@@ -43,7 +48,7 @@ class TicketsController < ApplicationController
     if @ticket.destroy
       redirect_to 'index'
     else
-      render json: { error: "ticket still survive"}
+      render 'edit'
     end
   end
 
