@@ -15,8 +15,6 @@ class TicketsController < ApplicationController
 
   def create
     # this initiates a bag, finds a locker, returns a ticket
-    p "create route"
-    p params
     @bag = Bag.new(size: params[:bag][:size])
     if @bag.save
       @locker = Locker.where(size: @bag.size, empty: true).first
@@ -24,10 +22,8 @@ class TicketsController < ApplicationController
       @locker.empty = false
       @locker.save
       @ticket = Ticket.create(locker_id: @locker.id, bag_id: @bag.id)
-      # render id to append div
+      # render id to append div client-side
       render json: { ticket_id: @ticket.id, bag_id: @bag.id, locker_id: @locker.id }
-      # redirect_to "/tickets/#{@ticket.id}"
-      # redirect_to 'index'
     else
       render 'new'
     end
@@ -38,8 +34,6 @@ class TicketsController < ApplicationController
   end
 
   def update
-    p "update"
-    p params
     @ticket = Ticket.find(params[:id])
     @bag = Bag.find(@ticket.bag_id)
     @locker = Locker.find_by(id: @ticket.locker_id)
@@ -48,9 +42,7 @@ class TicketsController < ApplicationController
     @locker.save
     ticket_id = @ticket.id
     if @ticket.destroy
-      # render id to remove div
       render json: { ticket_id: ticket_id }
-      # redirect_to 'index'
     else
       render 'edit'
     end
